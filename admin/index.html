@@ -4,27 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-
     // 简单的密码验证
-    var password = "your_secret_password"; // 替换为您的密码
-    if (localStorage.getItem('password') !== password) {
-      var input = prompt("请输入密码:");
+    var password = "123123"; // 替换为您的密码
+    if (localStorage.getItem('cms_password') !== password) {
+      var input = prompt("请输入后台管理密码:");
       if (input === password) {
-        localStorage.setItem('password', input);
+        localStorage.setItem('cms_password', input);
       } else {
         alert("密码错误！");
         window.location.href = "/";
