@@ -35,48 +35,12 @@
                     </svg>Sias
                 </div>
             </div>
-            <div class="left-div left-tag">
-                <div class="left-tag-item">网瘾</div>
-                <div class="left-tag-item">小学生</div>
-                <div class="left-tag-item">大一</div>
-                <div class="left-tag-item">网页</div>
-                <div class="left-tag-item">linux</div>
-                <div class="left-tag-item">跑者</div>
-                <div class="left-tag-item">前端</div>
-                <div class="left-tag-item">骑行</div>
+            <div id="leftTags" class="left-div left-tag">
+                <!-- 标签将通过JavaScript动态添加 -->
             </div>
             <div class="left-div left-time">
                 <ul id="line">
-                    <li>
-                        <div class="focus"></div>
-                        <div>敬请期待</div>
-                        <div>2024.1</div>
-                    </li>
-                    <li>
-                        <div class="focus"></div>
-                        <div>ICP备案成功</div>
-                        <div>2023.8</div>
-                    </li>
-                    <li>
-                        <div class="focus"></div>
-                        <div>注册域名zyyo.net</div>
-                        <div>2023.3</div>
-                    </li>
-                    <li>
-                        <div class="focus"></div>
-                        <div>出来后洗心革面</div>
-                        <div>2021.2</div>
-                    </li>
-                    <li>
-                        <div class="focus"></div>
-                        <div>...</div>
-                        <div>...</div>
-                    </li>
-                    <li>
-                        <div class="focus"></div>
-                        <div>搭建第一个网站</div>
-                        <div>2018.1</div>
-                    </li>
+                    <!-- 时间线将通过JavaScript动态添加 -->
                 </ul>
             </div>
         </div>
@@ -104,10 +68,7 @@
     </div>
 
     <footer id="siteFooter">
-        Zyyo © 2024 |
-        <a href="https://beian.miit.gov.cn/">
-            豫ICP备2023015852号-1 
-        </a>
+        <!-- 页脚内容将通过JavaScript动态添加 -->
     </footer>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -119,7 +80,6 @@
                 document.getElementById('siteTitle').textContent = settings.siteTitle;
                 document.getElementById('siteLogo').style.backgroundImage = `url(${settings.logoImage})`;
                 document.getElementById('siteFooter').innerHTML = settings.footerText;
-                document.body.style.backgroundImage = `url(${settings.backgroundImage})`;
 
                 // 添加标签
                 let tagsHtml = '';

@@ -1,9 +1,9 @@
-backend:
+mbackend:
   name: github
-  repo: lemodragon/homepages 
+  repo: lemodragon/homepages # 替换为您的仓库名
   branch: main
   base_url: https://lvdpub.com
-  auth_endpoint: api/auth/callback
+  auth_endpoint: api/auth
 
 media_folder: "static/img"
 public_folder: "/static/img"
