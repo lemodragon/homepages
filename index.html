@@ -119,6 +119,25 @@
                 document.getElementById('siteTitle').textContent = settings.siteTitle;
                 document.getElementById('siteLogo').style.backgroundImage = `url(${settings.logoImage})`;
                 document.getElementById('siteFooter').innerHTML = settings.footerText;
+
+                // 添加标签
+                let tagsHtml = '';
+                settings.tags.forEach(tag => {
+                    tagsHtml += `<div class="left-tag-item">${tag}</div>`;
+                });
+                document.getElementById('leftTags').innerHTML = tagsHtml;
+
+                // 添加时间线
+                let timelineHtml = '';
+                settings.timeline.forEach(item => {
+                    timelineHtml += `
+                        <li>
+                            <div class="focus"></div>
+                            <div>${item.event}</div>
+                            <div>${item.date}</div>
+                        </li>`;
+                });
+                document.getElementById('line').innerHTML = timelineHtml;
             })
             .catch(function (error) {
                 console.error('Error loading site settings:', error);
