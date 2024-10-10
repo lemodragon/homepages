@@ -1,22 +1,26 @@
 backend:
   name: github
-  repo: your_username/your_repo_name # 替换为您的GitHub用户名和仓库名
-  branch: main # 或者您的主分支名称
+  repo: lemodragon/homepages # 替换为你的GitHub仓库
+  branch: main # 使用您的主分支名称
+  auth_endpoint: https://github.com/login/oauth/authorize
+  base_url: https://lvdpub.com
+  client_id: Ov23lishktyivvImrNNe # GitHub OAuth的 Client ID
 
 media_folder: "static/img"
 public_folder: "/static/img"
 
 collections:
-  - name: "config"
-    label: "Site Configuration"
+  - name: "settings"
+    label: "Site Settings"
     files:
       - label: "Site Settings"
-        name: "settings"
+        name: "site_settings"
         file: "content/site-settings.json"
         fields:
           - {label: "Site Title", name: "siteTitle", widget: "string"}
           - {label: "Logo Image", name: "logoImage", widget: "image"}
           - {label: "Footer Text", name: "footerText", widget: "string"}
+  
   - name: "pages"
     label: "Pages"
     files:
