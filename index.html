@@ -10,6 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/root.css">
+    <style>
+        #zyyo-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #zyyo-loading-center {
+            width: 50px;
+            height: 50px;
+            background-color: #6c5ce7;
+            border-radius: 50%;
+            animation: bounce 0.5s alternate infinite;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+        .zyyo-main {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="zyyo-loading">
@@ -73,6 +101,30 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        function hideLoading() {
+            document.getElementById('zyyo-loading').style.display = 'none';
+        }
+
+        function showContent() {
+            document.querySelector('.zyyo-main').style.display = 'flex';
+        }
+
+        // 设置一个超时，10秒后强制隐藏加载动画
+        setTimeout(() => {
+            hideLoading();
+            showContent();
+        }, 10000);
+
+        let settingsLoaded = false;
+        let homeContentLoaded = false;
+
+        function checkAllLoaded() {
+            if (settingsLoaded && homeContentLoaded) {
+                hideLoading();
+                showContent();
+            }
+        }
+
         // Load site settings
         axios.get('/content/site-settings.json')
             .then(function (response) {
@@ -103,9 +155,14 @@
                     });
                 }
                 document.getElementById('line').innerHTML = timelineHtml;
+
+                settingsLoaded = true;
+                checkAllLoaded();
             })
             .catch(function (error) {
                 console.error('Error loading site settings:', error);
+                settingsLoaded = true;
+                checkAllLoaded();
             });
 
         // Load home content
@@ -151,9 +208,14 @@
                     });
                 }
                 document.getElementById('projectList').innerHTML = projectsHtml;
+
+                homeContentLoaded = true;
+                checkAllLoaded();
             })
             .catch(function (error) {
                 console.error('Error loading home content:', error);
+                homeContentLoaded = true;
+                checkAllLoaded();
             });
     </script>
 
