@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: main # 使用您的主分支名称
+
+media_folder: "static/img"
+public_folder: "/static/img"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "content/home.json"
+        fields:
+          - {label: "Welcome Text", name: "welcome", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+          - label: "Social Links"
+            name: "socialLinks"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+              - {label: "Image", name: "image", widget: "image"}

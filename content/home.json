@@ -1,0 +1,28 @@
+{
+    "welcome": "Hello I'm Zyyo",
+    "description": "👦 Full Stack Developer",
+    "socialLinks": [
+      {
+        "name": "Github",
+        "url": "https://github.com/ZYYO666"
+      },
+      {
+        "name": "Mail",
+        "url": "mailto:i@zyyo.net"
+      }
+    ],
+    "projects": [
+      {
+        "title": "博客",
+        "description": "记录摆烂日常",
+        "url": "https://blog.zyyo.net",
+        "image": "/static/img/i1.png"
+      },
+      {
+        "title": "云盘",
+        "description": "存储收集文件",
+        "url": "https://i.zyyo.cc",
+        "image": "/static/img/i2.png"
+      }
+    ]
+  }
