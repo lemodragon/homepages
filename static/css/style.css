@@ -253,7 +253,8 @@ body {
 
 #line {
     width: 100%;
-    height: 200px;
+    height: auto; /* 改为自动高度 */
+    max-height: 300px; /* 设置最大高度,可以根据需要调整 */
     font-size: 13px;
     padding-left: 8px;
     scroll-snap-type: y mandatory;
@@ -269,7 +270,6 @@ body {
     scroll-snap-align: end;
     color: var(--main_text_color);
 }
-
 
 
 .focus {
@@ -718,20 +718,7 @@ footer {
         display: none;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
 
 
 
