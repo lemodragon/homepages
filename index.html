@@ -36,11 +36,11 @@
                 </div>
             </div>
             <div id="leftTags" class="left-div left-tag">
-                <!-- 标签将通过JavaScript动态添加 -->
+                <!-- Tags will be dynamically added here -->
             </div>
             <div class="left-div left-time">
                 <ul id="line">
-                    <!-- 时间线将通过JavaScript动态添加 -->
+                    <!-- Timeline will be dynamically added here -->
                 </ul>
             </div>
         </div>
@@ -68,12 +68,12 @@
     </div>
 
     <footer id="siteFooter">
-        <!-- 页脚内容将通过JavaScript动态添加 -->
+        <!-- Footer content will be dynamically added here -->
     </footer>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        // 加载网站设置
+        // Load site settings
         axios.get('/content/site-settings.json')
             .then(function (response) {
                 const settings = response.data;
@@ -81,67 +81,75 @@
                 document.getElementById('siteLogo').style.backgroundImage = `url(${settings.logoImage})`;
                 document.getElementById('siteFooter').innerHTML = settings.footerText;
 
-                // 添加标签
+                // Add tags
                 let tagsHtml = '';
-                settings.tags.forEach(tag => {
-                    tagsHtml += `<div class="left-tag-item">${tag}</div>`;
-                });
+                if (settings.tags && Array.isArray(settings.tags)) {
+                    settings.tags.forEach(tag => {
+                        tagsHtml += `<div class="left-tag-item">${tag}</div>`;
+                    });
+                }
                 document.getElementById('leftTags').innerHTML = tagsHtml;
 
-                // 添加时间线
+                // Add timeline
                 let timelineHtml = '';
-                settings.timeline.forEach(item => {
-                    timelineHtml += `
-                        <li>
-                            <div class="focus"></div>
-                            <div>${item.event}</div>
-                            <div>${item.date}</div>
-                        </li>`;
-                });
+                if (settings.timeline && Array.isArray(settings.timeline)) {
+                    settings.timeline.forEach(item => {
+                        timelineHtml += `
+                            <li>
+                                <div class="focus"></div>
+                                <div>${item.event}</div>
+                                <div>${item.date}</div>
+                            </li>`;
+                    });
+                }
                 document.getElementById('line').innerHTML = timelineHtml;
             })
             .catch(function (error) {
                 console.error('Error loading site settings:', error);
             });
 
-        // 加载主页内容
+        // Load home content
         axios.get('/content/home.json')
             .then(function (response) {
                 const data = response.data;
                 
-                // 设置欢迎文本
+                // Set welcome text
                 document.getElementById('welcomeText').innerHTML = `Hello I'm <span class="gradientText">${data.welcome}</span>`;
                 
-                // 设置描述
+                // Set description
                 document.getElementById('description').innerHTML = data.description;
                 
-                // 设置社交链接
+                // Set social links
                 let socialLinksHtml = '';
-                data.socialLinks.forEach(link => {
-                    socialLinksHtml += `
-                        <a class="iconItem" href="${link.url}" target="_blank">
-                            <svg class="icon" viewBox="0 0 1024 1024">
-                                <!-- 这里应该放置对应的SVG路径 -->
-                            </svg>
-                            <div class="iconTip">${link.name}</div>
-                        </a>`;
-                });
+                if (data.socialLinks && Array.isArray(data.socialLinks)) {
+                    data.socialLinks.forEach(link => {
+                        socialLinksHtml += `
+                            <a class="iconItem" href="${link.url}" target="_blank">
+                                <svg class="icon" viewBox="0 0 1024 1024">
+                                    <!-- SVG path should be placed here -->
+                                </svg>
+                                <div class="iconTip">${link.name}</div>
+                            </a>`;
+                    });
+                }
                 document.getElementById('socialLinks').innerHTML = socialLinksHtml;
 
-                // 设置项目列表
+                // Set project list
                 let projectsHtml = '';
-                data.projects.forEach(project => {
-                    projectsHtml += `
-                        <a class="projectItem b" target="_blank" href="${project.url}">
-                            <div class="projectItemLeft">
-                                <h1>${project.title}</h1>
-                                <p>${project.description}</p>
-                            </div>
-                            <div class="projectItemRight">
-                                <img src="${project.image}" alt="${project.title}">
-                            </div>
-                        </a>`;
-                });
+                if (data.projects && Array.isArray(data.projects)) {
+                    data.projects.forEach(project => {
+                        projectsHtml += `
+                            <a class="projectItem b" target="_blank" href="${project.url}">
+                                <div class="projectItemLeft">
+                                    <h1>${project.title}</h1>
+                                    <p>${project.description}</p>
+                                </div>
+                                <div class="projectItemRight">
+                                    <img src="${project.image}" alt="${project.title}">
+                                </div>
+                            </a>`;
+                    });
+                }
                 document.getElementById('projectList').innerHTML = projectsHtml;
             })
             .catch(function (error) {

@@ -6,19 +6,6 @@
   <title>Content Manager</title>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  <script>
-    // 简单的密码验证
-    var password = "123123"; // 替换为您的密码
-    if (localStorage.getItem('cms_password') !== password) {
-      var input = prompt("请输入后台管理密码:");
-      if (input === password) {
-        localStorage.setItem('cms_password', input);
-      } else {
-        alert("密码错误！");
-        window.location.href = "/";
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
 </body>
 </html>
