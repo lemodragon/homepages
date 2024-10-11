@@ -58,8 +58,6 @@ tc_main[0].addEventListener('click', function (event) {
     event.stopPropagation();
 });
 
-
-
 function setCookie(name, value, days) {
     var expires = "";
     if (days) {
@@ -85,48 +83,17 @@ function getCookie(name) {
     return null;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
-
-
     var html = document.querySelector('html');
     var themeState = getCookie("themeState") || "Light";
     var tanChiShe = document.getElementById("tanChiShe");
 
-
-
-
-
-
     function changeTheme(theme) {
-        tanChiShe.src = "/static/svg/snake-" + theme + ".svg";
+        tanChiShe.src = "./static/svg/snake-" + theme + ".svg";
         html.dataset.theme = theme;
         setCookie("themeState", theme, 365);
         themeState = theme;
     }
-
-
-
-
-
-
 
     var Checkbox = document.getElementById('myonoffswitch')
     Checkbox.addEventListener('change', function () {
@@ -139,31 +106,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
-
     if (themeState == "Dark") {
         Checkbox.checked = false;
     }
 
     changeTheme(themeState);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 
     var fpsElement = document.createElement('div');
     fpsElement.id = 'fps';
@@ -205,22 +152,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         step();
     })();
-    
-    
-    
-    //pop('/static/img/tz.jpg')
-    
-    
-    
-});
 
+    // 新增：立即开始隐藏加载动画
+    var pageLoading = document.querySelector("#zyyo-loading");
+    pageLoading.style.opacity = '0';
+    pageLoading.style.transition = 'opacity 0.5s ease';
 
-
-
-var pageLoading = document.querySelector("#zyyo-loading");
-window.addEventListener('load', function() {
+    // 设置一个短暂的延迟后完全隐藏加载动画
     setTimeout(function () {
-        pageLoading.style.opacity = '0';
-    }, 100);
+        pageLoading.style.display = 'none';
+    }, 500); // 500毫秒后完全隐藏，与过渡效果持续时间匹配
 });
+
+// 如果需要在页面完全加载后执行额外的操作，可以保留 load 事件
+window.addEventListener('load', function() {
+    console.log('页面完全加载完毕');
+    // 这里可以放置需要在页面完全加载后执行的代码
+});
+
+// 移除了原有的 window load 事件监听器
+// window.addEventListener('load', function() { ... });
+
+
 
