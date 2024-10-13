@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('hitokoto').textContent = hitokoto;
             })
             .catch(error => {
+                console.error('一言加载失败:', error);
                 document.getElementById('hitokoto').textContent = "一言加载失败";
             });
     }
@@ -227,23 +228,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.text();  // 首先获取文本响应
+                return response.text();
             })
             .then(text => {
+                console.log('Raw API response:', text); // 打印原始响应
                 try {
-                    return JSON.parse(text);  // 尝试解析 JSON
+                    return JSON.parse(text);
                 } catch (e) {
-                    console.error('Response is not valid JSON:', text);
+                    console.error('JSON解析错误:', e);
+                    console.error('原始响应:', text);
                     throw new Error('Invalid JSON response from server');
                 }
             })
             .then(data => {
+                console.log('Parsed weather data:', data); // 打印解析后的数据
                 const weatherElement = document.getElementById('weather');
                 if (weatherElement && data.now) {
                     const iconClass = `qi-${data.now.icon}`;
                     weatherElement.innerHTML = `<i class="${iconClass}"></i> ${data.now.text}, ${data.now.temp}°C`;
                 } else {
-                    console.error('Weather element not found or invalid data');
+                    console.error('Weather element not found or invalid data:', data);
                     throw new Error('Invalid weather data');
                 }
             })
@@ -262,18 +266,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.text();  // 首先获取文本响应
+                return response.text();
             })
             .then(text => {
+                console.log('Raw API response:', text); // 打印原始响应
                 try {
-                    return JSON.parse(text);  // 尝试解析 JSON
+                    return JSON.parse(text);
                 } catch (e) {
-                    console.error('Response is not valid JSON:', text);
+                    console.error('JSON解析错误:', e);
+                    console.error('原始响应:', text);
                     throw new Error('Invalid JSON response from server');
                 }
             })
             .then(data => {
-                console.log('Weather forecast data:', data);
+                console.log('Parsed forecast data:', data); // 打印解析后的数据
                 const forecastElement = document.getElementById('weather-forecast');
                 if (!forecastElement) {
                     console.error('Weather forecast element not found');
@@ -323,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         forecastElement.innerHTML += forecastHTML;
                     }
                 } else {
+                    console.error('Invalid or empty forecast data:', data);
                     throw new Error('Invalid or empty forecast data');
                 }
             })
