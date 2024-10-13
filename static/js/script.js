@@ -228,20 +228,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.text();
-            })
-            .then(text => {
-                console.log('Raw API response:', text); // 打印原始响应
-                try {
-                    return JSON.parse(text);
-                } catch (e) {
-                    console.error('JSON解析错误:', e);
-                    console.error('原始响应:', text);
-                    throw new Error('Invalid JSON response from server');
-                }
+                return response.json();
             })
             .then(data => {
-                console.log('Parsed weather data:', data); // 打印解析后的数据
+                console.log('Parsed weather data:', data);
                 const weatherElement = document.getElementById('weather');
                 if (weatherElement && data.now) {
                     const iconClass = `qi-${data.now.icon}`;
@@ -266,20 +256,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                return response.text();
-            })
-            .then(text => {
-                console.log('Raw API response:', text); // 打印原始响应
-                try {
-                    return JSON.parse(text);
-                } catch (e) {
-                    console.error('JSON解析错误:', e);
-                    console.error('原始响应:', text);
-                    throw new Error('Invalid JSON response from server');
-                }
+                return response.json();
             })
             .then(data => {
-                console.log('Parsed forecast data:', data); // 打印解析后的数据
+                console.log('Parsed forecast data:', data);
                 const forecastElement = document.getElementById('weather-forecast');
                 if (!forecastElement) {
                     console.error('Weather forecast element not found');
@@ -313,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
     
                     // 展示未来 7 个小时的数据
-                    for (let i = 1; i < 8; i++) {
+                    for (let i = 1; i < 8 && i < data.hourly.length; i++) {
                         const hourForecast = data.hourly[i];
                         const iconClass = `qi-${hourForecast.icon}`;
                         const temp = `${hourForecast.temp}°C`;
