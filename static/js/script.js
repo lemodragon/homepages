@@ -1,4 +1,4 @@
-console.log('%cCopyright © 2024 zyyo.net',
+console.log('%cCopyright © 2024 lvdpub.com',
     'background-color: #ff00ff; color: white; font-size: 24px; font-weight: bold; padding: 10px;'
 );
 console.log('%c   /\\_/\\', 'color: #8B4513; font-size: 20px;');
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     // 展示未来 7 个小时的数据
-                    for (let i = 1; i < 8; i++) {
+                    for (let i = 1; i < 7; i++) {
                         const hourForecast = data.hourly[i];
                         const iconClass = `qi-${hourForecast.icon}`;
                         const temp = `${hourForecast.temp}°C`;
@@ -319,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
     getRandomSentence();
     getWeather();
 });
-
 
 
 //新闻
