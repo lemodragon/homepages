@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var tanChiShe = document.getElementById("tanChiShe");
 
     function changeTheme(theme) {
-        tanChiShe.src = "./static/svg/snake-" + theme + ".svg";
+        tanChiShe.src = "/static/svg/snake-" + theme + ".svg";
         html.dataset.theme = theme;
         setCookie("themeState", theme, 365);
         themeState = theme;
