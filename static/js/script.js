@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 获取天气数据
     function getWeather() {
-        fetch("https://devapi.qweather.com/v7/weather/now?location=101310101&key=6ed0f0d9149347cabe664db890e2e0c5")
+        fetch("/api/weather/now")
             .then(response => response.json())
             .then(data => {
                 const weatherElement = document.getElementById('weather');
@@ -241,10 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
     }
-
-    // 获取未来的天气数据（如未来几小时的温度）
+    
     function getWeatherForecast() {
-        fetch("https://devapi.qweather.com/v7/weather/24h?location=101310101&key=6ed0f0d9149347cabe664db890e2e0c5")
+        fetch("/api/weather/forecast")
             .then(response => response.json())
             .then(data => {
                 console.log('Weather forecast data:', data);
@@ -254,39 +253,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 forecastElement.innerHTML = '';
-
+    
                 if (data.hourly && data.hourly.length > 0) {
                     // 设置当前天气
                     const currentWeather = data.hourly[0];
                     const iconElement = document.querySelector('.current-weather-icon');
                     const textElement = document.querySelector('.current-weather-text');
                     const tempElement = document.querySelector('.current-weather-temp');
-
+    
                     if (iconElement) {
                         iconElement.className = `current-weather-icon qi-${currentWeather.icon}`;
                     } else {
                         console.error('Current weather icon element not found');
                     }
-
+    
                     if (textElement) {
                         textElement.textContent = currentWeather.text;
                     } else {
                         console.error('Current weather text element not found');
                     }
-
+    
                     if (tempElement) {
                         tempElement.textContent = `${currentWeather.temp}°C`;
                     } else {
                         console.error('Current weather temp element not found');
                     }
-
+    
                     // 展示未来 7 个小时的数据
                     for (let i = 1; i < 8; i++) {
                         const hourForecast = data.hourly[i];
                         const iconClass = `qi-${hourForecast.icon}`;
                         const temp = `${hourForecast.temp}°C`;
                         const time = new Date(hourForecast.fxTime).getHours() + ":00";
-
+    
                         const forecastHTML = `
                             <div class="forecast-item">
                                 <div class="weather-forecast-icon ${iconClass}"></div>
