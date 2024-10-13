@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     // 展示未来 7 个小时的数据
-                    for (let i = 1; i < 7; i++) {
+                    for (let i = 1; i < 8; i++) {
                         const hourForecast = data.hourly[i];
                         const iconClass = `qi-${hourForecast.icon}`;
                         const temp = `${hourForecast.temp}°C`;
