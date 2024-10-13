@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="薰衣草Pub">
-
 <head class="薰衣草Pub">
 
 	<meta charset="utf-8">
@@ -14,6 +13,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="/static/css/style.css">
 	<link rel="stylesheet" href="/static/css/root.css">
+	<!-- 确保 qweather-icons.css 路径正确 -->
+    <style>
+        @import './static/css/qweather-icons.css';
+
+        @font-face {
+            font-family: 'qweather-icons';
+            src: url('./static/fonts/qweather-icons.ttf') format('truetype');
+        }
+
+        .QWeather {
+            font-family: 'qweather-icons';
+            font-size: 20px;
+        }
+
+        /* 其他自定义样式 */
+        .weather-info {
+            font-size: 20px;
+            color: white;
+        }
+
+        #weather::before {
+            content: "\f101";  /* 默认图标，可以根据天气情况动态更改 */
+            font-family: 'qweather-icons';
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
 	<div id="zyyo-loading">
@@ -107,6 +132,19 @@
 				</ul>
 			</div>
 		</div>
+
+		<!-- 新闻插入点-->
+		<div id="sidebar" class="sidebar">
+			<div id="sidebarContent">
+				<h1>热点新闻</h1>
+				<select id="sourceSelect">
+					<option value="/ithome-xijiayi">IT之家-羲嘉亿</option>
+					<!-- 其他新闻源选项 -->
+				</select>
+				<div id="newsContainer"></div>
+			</div>
+		</div>
+
 		<div class="zyyo-right">
 			<header>
 				<div class="index-logo" style="background-image: url(/static/img/logo.png);">
@@ -114,14 +152,26 @@
 						src="/static/img/logokuang.png">
 				</div>
 				<div class="welcome">
-					Hello I' m <span class="gradientText">
-						悱蕟 </span>
+					<div class="left-column">
+						<div>Hello I'm <span class="gradientText">悱蕟</span></div>
+					</div>
+					<div class="right-column">
+						<div id="weather" class="weather-info">
+							<span class="current-weather-icon"></span>
+							<span class="current-weather-text"></span>
+							<span class="current-weather-temp"></span>
+						</div>
+						<div class="weather-dropdown" id="weather-dropdown">
+							<div class="weather-forecast" id="weather-forecast">
+								<!-- 未来温度展示区域 -->
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="description">👦 <span class="purpleText">Full Stack</span> Developer
+				<div class="description">🧸 <span class="purpleText">Versatile media</span> Creator
 				</div>
-				<div class="description">📝 The only way to do <span class="purpleText textBackground">great</span> is
-					to <span class="purpleText textBackground">love</span> what you do. </div>
-
+				<div class="description">📝 If you don't<span class="purpleText textBackground">work hard</span>you will still be same
+					as you were<span class="purpleText textBackground">one year later</span> Just one year older. </div>
 				<div class="iconContainer">
 					<a class="iconItem" onclick="" href="https://github.com/lemodragon">
 						<svg t="1704870335945" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2487">
@@ -167,7 +217,6 @@
 						</div>
 					</a>
 				</div>
-
 				<div class="tanChiShe">
 					<img id="tanChiShe" src="/static/svg/snake-Light.svg" alt="">
 				</div>
@@ -175,7 +224,7 @@
 			<content>
 				<div class="title"><svg t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1891" >
                         <path d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"  p-id="1892"></path>
-                    </svg>site </div>
+                    </svg>site</div>
 				<div class="projectList"><a class="projectItem a" target="_blank" href="https://draw.lvdpub.com/">
 						<div class="projectItemLeft">
 							<h1>绘图站</h1>
@@ -195,7 +244,6 @@
 						</div>
 
 					</a>
-
 					<a class="projectItem b" target="_blank" href="https://tag.cute.pp.ua/">
 						<div class="projectItemLeft">
 							<h1>导航站</h1>
@@ -204,7 +252,6 @@
 						<div class="projectItemRight">
 							<img src="/static/img/i3.png" alt="">
 						</div>
-
 					</a>
 					<a class="projectItem a" target="_blank" href="https://blog.lavender8.top">
 						<div class="projectItemLeft">
@@ -218,7 +265,7 @@
 					</a></div>
 				<div class="title"><svg t="1705257422086" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1891" >
                         <path d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"  p-id="1892"></path>
-                    </svg>site </div>
+                    </svg>site</div>
 				<div class="projectList"><a class="projectItem b" target="_blank" href="https://draw.cute.pp.ua/">
 						<div class="projectItemLeft">
 							<h1>画板</h1>
@@ -231,7 +278,7 @@
 					</a><a class="projectItem b" target="_blank" href="https://chat.lavender8.top/">
 						<div class="projectItemLeft">
 							<h1>ChatGPT</h1>
-							<p>自建的ChatGPT镜像站，面梯使用</p>
+							<p>自建的ChatGPT镜像站，免梯使用</p>
 						</div>
 						<div class="projectItemRight">
 							<img src="/static/img/i6.png" alt="">
@@ -257,8 +304,6 @@
 						</div>
 
 					</a></div>
-			
-			
 				<div class="title">
 					<svg t="1705257823317" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7833" >
                         <path d="M395.765333 586.570667h-171.733333c-22.421333 0-37.888-22.442667-29.909333-43.381334L364.768 95.274667A32 32 0 0 1 394.666667 74.666667h287.957333c22.72 0 38.208 23.018667 29.632 44.064l-99.36 243.882666h187.050667c27.509333 0 42.186667 32.426667 24.042666 53.098667l-458.602666 522.56c-22.293333 25.408-63.626667 3.392-54.976-29.28l85.354666-322.421333zM416.714667 138.666667L270.453333 522.581333h166.869334a32 32 0 0 1 30.933333 40.181334l-61.130667 230.954666 322.176-367.114666H565.312c-22.72 0-38.208-23.018667-29.632-44.064l99.36-243.882667H416.714667z"  p-id="7834"></path>
@@ -272,10 +317,16 @@
 			</content>
 		</div>
 	</div>
+	<!-- 新添加的飞行小巫女元素 -->
+	<div id="flying-witch">
+		<img src="./static/img/girl.png" alt="Flying Witch">
+	</div>
 	<footer>
-		悱蕟© 2024 |
-		<a href="https://beian.miit.gov.cn/">
-			萌ICP备202401012号-1 </a>
+		<div class="footer-content">
+			Zyyo © 2024 |
+			<a href="https://icp.gov.moe/?keyword=20240758" target="_blank">萌ICP备20240758号</a>
+			<div id="hitokoto" class="info-item">一言加载中...</div>
+		</div>
 	</footer>
 	<div class="tc">
 		<div onclick="" class="tc-main">
@@ -283,23 +334,6 @@
 		</div>
 
 	</div>
-	<!-- 新添加的飞行小巫女元素 -->
-    <div id="flying-witch">
-        <img src="./static/img/girl.png" alt="Flying Witch">
-    </div>
-    <!-- 新添加的JavaScript代码 -->
-    <script>
-        function randomFly() {
-            const witch = document.getElementById('flying-witch');
-            const randomY = Math.random() * 40 - 10; // 随机上下 -20px 到 20px
-            witch.style.animation = 'none';
-            witch.offsetHeight; // 触发重绘
-            witch.style.animation = `fly 2s ease-in-out infinite, randomY 4s ease-in-out infinite`;
-            witch.style.setProperty('--random-y', `${randomY}px`);
-        }
-
-        setInterval(randomFly, 4000); // 每4秒改变一次随机位置
-    </script>
 </body>
 <script src="/static/js/script.js"> </script>
 </html>

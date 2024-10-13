@@ -225,7 +225,7 @@ body {
     width: 16px;
     height: 16px;
     fill:var(--fill);
-   font-size: 18px;
+    font-size: 18px;
     margin-right: 10px;
 }
 .left-tag {
@@ -249,7 +249,7 @@ body {
 
 #line {
     width: 100%;
-    height: 300px;
+    height: 280px;
     font-size: 13px;
     padding-left: 8px;
     scroll-snap-type: y mandatory;
@@ -287,8 +287,6 @@ body {
 #line::-webkit-scrollbar {
     display: none;
 }
-
-
 
 .zyyo-right {
     width: calc(100% - 230px);
@@ -596,18 +594,6 @@ body {
     display: none;
 }
 
-footer {
-    position: absolute;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    backdrop-filter: blur(var(--card_filter));
-    -webkit-backdrop-filter: blur(var(--card_filter));
-    background: var(--item_bg_color);
-    color: var(--footer_text_color);
-    font-size: 13px;
-    bottom: 0;
-}
 
 @media (min-width: 800px) {
 
@@ -848,35 +834,203 @@ footer {
 }
 
 /* 新添加的飞行小巫女样式 */
+
 #flying-witch {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  width: 200px; /* 调整大小 */
-  z-index: 9999;
-  animation: fly 2s ease-in-out infinite;
-  --random-y: 0px;
+    position: fixed;
+    z-index: 999;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    bottom: 20px;
+    right: -20px;
+    width: 23%;
+    height: 23%;
 }
 
 #flying-witch img {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-@keyframes fly {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+#flying-witch:hover {
+    transform: scale(1.1);
 }
 
-@keyframes randomY {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(var(--random-y));
-  }
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(var(--float-distance)); }
+}
+
+.sidebar.open {
+    width: 280px;
+
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #2b2a2a;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+#sidebarContent {
+    padding: 20px;
+    color: white;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+#sidebarContent::-webkit-scrollbar {
+    width: 10px;
+}
+
+#sidebarContent::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#sidebarContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+
+#sourceSelect {
+    width: 100%;
+    margin-top: 5px; /* Added 15px top margin */
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+#newsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.news-item h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.news-item p {
+    font-size: 14px;
+}
+
+.news-item a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* 底栏 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--item_bg_color); /* 使用原有的背景颜色变量 */
+    color: var(--footer_text_color); /* 使用原有的文本颜色变量 */
+    font-size: 13px;
+    bottom: 0;
+    backdrop-filter: blur(var(--card_filter)); /* 保留模糊效果 */
+    -webkit-backdrop-filter: blur(var(--card_filter)); /* 支持 Safari 浏览器 */
+}
+
+
+.footer-content {
+    text-align: center;
+}
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    position: relative;
+    width: 130px; 
+}
+
+.gradientText {
+    font-size: 1.5em;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* 为不支持 -webkit-text-fill-color 的浏览器提供回退 */
+}
+
+.weather-info {
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.current-weather-icon {
+    font-family: 'qweather-icons';
+    font-size: 36px;
+}
+
+.current-weather-text, .current-weather-temp {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.weather-dropdown {
+    position: absolute;
+    top: 130%;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    z-index: 10;
+}
+
+.weather-forecast {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.forecast-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.weather-forecast-icon {
+    font-family: 'qweather-icons';
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.forecast-time, .forecast-temp {
+    font-size: 14px;
+    margin-right: 10px;
 }
