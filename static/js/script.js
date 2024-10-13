@@ -223,14 +223,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取天气数据
     function getWeather() {
         fetch("/api/weather/now")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();  // 首先获取文本响应
+            })
+            .then(text => {
+                try {
+                    return JSON.parse(text);  // 尝试解析 JSON
+                } catch (e) {
+                    console.error('Response is not valid JSON:', text);
+                    throw new Error('Invalid JSON response from server');
+                }
+            })
             .then(data => {
                 const weatherElement = document.getElementById('weather');
-                if (weatherElement) {
+                if (weatherElement && data.now) {
                     const iconClass = `qi-${data.now.icon}`;
                     weatherElement.innerHTML = `<i class="${iconClass}"></i> ${data.now.text}, ${data.now.temp}°C`;
                 } else {
-                    console.error('Weather element not found');
+                    console.error('Weather element not found or invalid data');
+                    throw new Error('Invalid weather data');
                 }
             })
             .catch(error => {
@@ -244,7 +258,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function getWeatherForecast() {
         fetch("/api/weather/forecast")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();  // 首先获取文本响应
+            })
+            .then(text => {
+                try {
+                    return JSON.parse(text);  // 尝试解析 JSON
+                } catch (e) {
+                    console.error('Response is not valid JSON:', text);
+                    throw new Error('Invalid JSON response from server');
+                }
+            })
             .then(data => {
                 console.log('Weather forecast data:', data);
                 const forecastElement = document.getElementById('weather-forecast');
@@ -296,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         forecastElement.innerHTML += forecastHTML;
                     }
                 } else {
-                    forecastElement.innerHTML = '未能获取天气预报数据';
+                    throw new Error('Invalid or empty forecast data');
                 }
             })
             .catch(error => {
