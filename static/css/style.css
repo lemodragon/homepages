@@ -323,37 +323,33 @@ body {
 
 
 .gradientText {
-
+    background-image: var(--gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
     background-size: 200%;
     background-position: 0%;
     font-family: "title";
     animation: backgroundSizeAnimation 10s ease-in-out infinite;
-      background-image:  var(--gradient);
 }
 
 @keyframes backgroundSizeAnimation {
     0% {
         background-position: 100%;
     }
-
     25% {
         background-position: 50%;
     }
-
     50% {
         background-position: 0%;
     }
-
     75% {
         background-position: 50%;
     }
-
     100% {
         background-position: 100%;
     }
-
 }
 
 .purpleText {
@@ -972,15 +968,6 @@ footer {
 .right-column {
     position: relative;
     width: 130px; 
-}
-
-.gradientText {
-    font-size: 1.5em;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent; /* 为不支持 -webkit-text-fill-color 的浏览器提供回退 */
 }
 
 .weather-info {
