@@ -13,7 +13,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="/static/css/style.css">
 	<link rel="stylesheet" href="/static/css/root.css">
-	<!-- 确保 qweather-icons.css 路径正确 -->
     <style>
         @import '/static/css/qweather-icons.css';
         @font-face {
@@ -26,28 +25,22 @@
             font-size: 20px;
         }
 
-        /* 其他自定义样式 */
         .weather-info {
             font-size: 20px;
             color: white;
         }
-
-        #weather::before {
-            content: "\f101";  /* 默认图标，可以根据天气情况动态更改 */
-            font-family: 'qweather-icons';
-            margin-right: 8px;
-        }
+		
     </style>
 </head>
 <body>
-	<div id="zyyo-loading">
-		<div id="zyyo-loading-center">
+	<div id="feifa-loading">
+		<div id="feifa-loading-center">
 		</div>
 	</div>
-	<div class="zyyo-filter"></div>
+	<div class="feifa-filter"></div>
 
-	<div class="zyyo-main">
-		<div class="zyyo-left">
+	<div class="feifa-main">
+		<div class="feifa-left">
 			<div class="logo" style="background-image: url(/static/img/logo.png);">
 				<img style="position: absolute;top:-10%;left:-10%;width: 120%; aspect-ratio: 1/1;"
 					src="/static/img/logokuang.png">
@@ -135,8 +128,6 @@
 				</ul>
 			</div>
 		</div>
-
-		<!-- 新闻插入点-->
 		<div id="sidebar" class="sidebar">
 			<div id="sidebarContent">
 				<h1>热点新闻</h1>
@@ -148,7 +139,7 @@
 			</div>
 		</div>
 
-		<div class="zyyo-right">
+		<div class="feifa-right">
 			<header>
 				<div class="index-logo" style="background-image: url(/static/img/logo.png);">
 					<img style="position: absolute;top:-10%;left:-10%;width: 120%; aspect-ratio: 1/1;"
@@ -160,7 +151,7 @@
 					</div>
 					<div class="right-column">
 						<div id="weather" class="weather-info">
-							<span class="current-weather-icon"></span>
+							<i class="current-weather-icon"></i>
 							<span class="current-weather-text"></span>
 							<span class="current-weather-temp"></span>
 						</div>
@@ -320,7 +311,6 @@
 			</content>
 		</div>
 	</div>
-	<!-- 新添加的飞行小巫女元素 -->
 	<div id="flying-witch">
 		<img src="/static/img/girl.png" alt="Flying Witch">
 	</div>

@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
 
     // 新增：立即开始隐藏加载动画
-    var pageLoading = document.querySelector("#zyyo-loading");
+    var pageLoading = document.querySelector("#feifa-loading");
     pageLoading.style.opacity = '0';
     pageLoading.style.transition = 'opacity 0.5s ease';
 
@@ -225,14 +225,20 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch("https://devapi.qweather.com/v7/weather/now?location=101310101&key=6ed0f0d9149347cabe664db890e2e0c5")
             .then(response => response.json())
             .then(data => {
-                const weather = `${data.now.text}, ${data.now.temp}°C`;
-                const iconClass = `qi-${data.now.icon}`; // 根据图标编码生成类名
                 const weatherElement = document.getElementById('weather');
-                weatherElement.textContent = weather;
-                weatherElement.classList.add(iconClass); // 动态添加图标类
+                if (weatherElement) {
+                    const iconClass = `qi-${data.now.icon}`;
+                    weatherElement.innerHTML = `<i class="${iconClass}"></i> ${data.now.text}, ${data.now.temp}°C`;
+                } else {
+                    console.error('Weather element not found');
+                }
             })
             .catch(error => {
-                document.getElementById('weather').textContent = "天气加载失败";
+                console.error('天气加载失败', error);
+                const weatherElement = document.getElementById('weather');
+                if (weatherElement) {
+                    weatherElement.textContent = "天气加载失败";
+                }
             });
     }
 
