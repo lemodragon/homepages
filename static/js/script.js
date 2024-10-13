@@ -216,29 +216,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('hitokoto').textContent = hitokoto;
             })
             .catch(error => {
-                console.error('一言加载失败:', error);
                 document.getElementById('hitokoto').textContent = "一言加载失败";
             });
     }
 
     // 获取天气数据
     function getWeather() {
-        fetch("/api/weather/now")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+        fetch("https://weather.lolita.pp.ua/api/weather/now")
+            .then(response => response.json())
             .then(data => {
-                console.log('Parsed weather data:', data);
                 const weatherElement = document.getElementById('weather');
-                if (weatherElement && data.now) {
+                if (weatherElement) {
                     const iconClass = `qi-${data.now.icon}`;
                     weatherElement.innerHTML = `<i class="${iconClass}"></i> ${data.now.text}, ${data.now.temp}°C`;
                 } else {
-                    console.error('Weather element not found or invalid data:', data);
-                    throw new Error('Invalid weather data');
+                    console.error('Weather element not found');
                 }
             })
             .catch(error => {
@@ -249,56 +241,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
     }
-    
+
+    // 获取未来的天气数据（如未来几小时的温度）
     function getWeatherForecast() {
-        fetch("/api/weather/forecast")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+        fetch("https://weather.lolita.pp.ua/api/weather/forecast")
+            .then(response => response.json())
             .then(data => {
-                console.log('Parsed forecast data:', data);
+                console.log('Weather forecast data:', data);
                 const forecastElement = document.getElementById('weather-forecast');
                 if (!forecastElement) {
                     console.error('Weather forecast element not found');
                     return;
                 }
                 forecastElement.innerHTML = '';
-    
+
                 if (data.hourly && data.hourly.length > 0) {
                     // 设置当前天气
                     const currentWeather = data.hourly[0];
                     const iconElement = document.querySelector('.current-weather-icon');
                     const textElement = document.querySelector('.current-weather-text');
                     const tempElement = document.querySelector('.current-weather-temp');
-    
+
                     if (iconElement) {
                         iconElement.className = `current-weather-icon qi-${currentWeather.icon}`;
                     } else {
                         console.error('Current weather icon element not found');
                     }
-    
+
                     if (textElement) {
                         textElement.textContent = currentWeather.text;
                     } else {
                         console.error('Current weather text element not found');
                     }
-    
+
                     if (tempElement) {
                         tempElement.textContent = `${currentWeather.temp}°C`;
                     } else {
                         console.error('Current weather temp element not found');
                     }
-    
+
                     // 展示未来 7 个小时的数据
-                    for (let i = 1; i < 8 && i < data.hourly.length; i++) {
+                    for (let i = 1; i < 8; i++) {
                         const hourForecast = data.hourly[i];
                         const iconClass = `qi-${hourForecast.icon}`;
                         const temp = `${hourForecast.temp}°C`;
                         const time = new Date(hourForecast.fxTime).getHours() + ":00";
-    
+
                         const forecastHTML = `
                             <div class="forecast-item">
                                 <div class="weather-forecast-icon ${iconClass}"></div>
@@ -309,8 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         forecastElement.innerHTML += forecastHTML;
                     }
                 } else {
-                    console.error('Invalid or empty forecast data:', data);
-                    throw new Error('Invalid or empty forecast data');
+                    forecastElement.innerHTML = '未能获取天气预报数据';
                 }
             })
             .catch(error => {
