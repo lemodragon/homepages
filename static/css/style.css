@@ -970,15 +970,6 @@ footer {
     width: 130px; 
 }
 
-.weather-info {
-    font-size: 10px;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
 .current-weather-icon {
     font-family: 'qweather-icons';
     font-size: 36px;
