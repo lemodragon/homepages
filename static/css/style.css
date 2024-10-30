@@ -59,9 +59,9 @@ a:focus {
 
 
 html[data-theme="Dark"] {
-    
+
     --main_text_color: #fff;
-    --gradient:linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
+    --gradient: linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
     --purple_text_color: #747bff;
     --text_bg_color: rgb(26, 4, 48);
     --item_bg_color: rgb(19, 20, 24);
@@ -73,7 +73,7 @@ html[data-theme="Dark"] {
     --card_filter: 0px;
     --back_filter: 0px;
     --back_filter_color: #000000;
-    --fill:#ffffff;
+    --fill: #ffffff;
 }
 
 
@@ -82,7 +82,7 @@ body {
     min-height: 100vh;
     width: 100%;
     position: relative;
-    font-family: "b",  "a", sans-serif;
+    font-family: "b", "a", sans-serif;
     background: var(--main_bg_color);
     background-repeat: no-repeat;
     background-size: cover;
@@ -147,10 +147,10 @@ body {
     width: 100%;
     height: 100%;
     background: var(--back_filter_color);
-    backdrop-filter:  blur(var(--back_filter));
+    backdrop-filter: blur(var(--back_filter));
     -webkit-backdrop-filter: blur(var(--back_filter));
     z-index: -99999999;
-   
+
 }
 
 .feifa-main {
@@ -221,13 +221,15 @@ body {
     overflow: hidden;
 }
 
-.left-des-item i,.left-des-item svg{
+.left-des-item i,
+.left-des-item svg {
     width: 16px;
     height: 16px;
-    fill:var(--fill);
+    fill: var(--fill);
     font-size: 18px;
     margin-right: 10px;
 }
+
 .left-tag {
     display: flex;
     flex-direction: row;
@@ -249,7 +251,7 @@ body {
 
 #line {
     width: 100%;
-    height: 238px;
+    height: 220px;
     font-size: 13px;
     padding-left: 8px;
     scroll-snap-type: y mandatory;
@@ -292,10 +294,11 @@ body {
     width: calc(100% - 230px);
     display: flex;
     padding: 20px;
-  position: relative;
+    position: relative;
     padding-bottom: 50px;
     flex-direction: column;
 }
+
 .welcome {
 
     font-size: 65px;
@@ -314,6 +317,7 @@ body {
     border-radius: 50%;
     border: 0.5px solid #ffffff;
 }
+
 .description {
 
     font-size: 20px;
@@ -337,15 +341,19 @@ body {
     0% {
         background-position: 100%;
     }
+
     25% {
         background-position: 50%;
     }
+
     50% {
         background-position: 0%;
     }
+
     75% {
         background-position: 50%;
     }
+
     100% {
         background-position: 100%;
     }
@@ -397,13 +405,16 @@ body {
     transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     flex-shrink: 0;
 }
-.iconItem i,.iconItem svg{
+
+.iconItem i,
+.iconItem svg {
     width: 22px;
     height: 22px;
-    fill:var(--fill);
+    fill: var(--fill);
     font-size: 22px;
-     margin-right: 3px;
+    margin-right: 3px;
 }
+
 .switch {
     width: 55px;
     height: 43px;
@@ -411,7 +422,8 @@ body {
     border-radius: 7px;
     display: flex;
     margin-left: 10px;
-    backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
+    backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
     background: var(--item_bg_color);
 
     align-items: center;
@@ -464,12 +476,15 @@ body {
     margin: 20px 0;
     transition: transform 0.4s ease;
 }
-.title i ,.title svg{
+
+.title i,
+.title svg {
     margin-right: 8px;
     height: 26px;
     width: 26px;
-   fill:var(--fill);
+    fill: var(--fill);
 }
+
 .title:hover {
     transform: translateY(-5px);
 }
@@ -487,8 +502,10 @@ body {
     padding: 15px;
     height: 95px;
     width: calc(25% - 15px);
-    backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
-    -webkit-backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
+    backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
     transition: opacity 0.3s ease, background-color 0.3s ease, border 0.3s ease, transform 0.2s ease;
 
 
@@ -501,7 +518,8 @@ body {
     padding: 15px;
     height: 100px;
     width: calc(25% - 15px);
-    backdrop-filter: blur(var(--card_filter));-webkit-backdrop-filter: blur(var(--card_filter));
+    backdrop-filter: blur(var(--card_filter));
+    -webkit-backdrop-filter: blur(var(--card_filter));
     transition: opacity 0.5s ease, background-color 0.2s ease, border 0.2s ease, transform 0.3s ease;
 
 }
@@ -601,9 +619,11 @@ body {
     .a {
         width: calc(50% - 20px);
     }
-.projectItem{
-    margin: 10px;
-}
+
+    .projectItem {
+        margin: 10px;
+    }
+
     .b {
 
         width: calc(50% - 20px);
@@ -634,7 +654,7 @@ body {
     .a {
 
         width: calc(50% - 18px);
-  margin: 9px;
+        margin: 9px;
 
     }
 
@@ -663,14 +683,17 @@ body {
         margin: 2vw 0;
 
     }
-    .iconContainer {
-  
-     margin-top: 4vw;
 
-}
-.projectItem{
-    padding: 10px;
-}
+    .iconContainer {
+
+        margin-top: 4vw;
+
+    }
+
+    .projectItem {
+        padding: 10px;
+    }
+
     .projectItemLeft p {
         font-size: 13px;
     }
@@ -697,7 +720,7 @@ body {
 
 .tc {
     position: fixed;
-   
+
     display: flex;
     visibility: hidden;
     width: 100vw;
@@ -714,7 +737,7 @@ body {
 
 .tc-main {
     z-index: 100000;
-    
+
     width: 80%;
     max-width: 300px;
     min-height: 200px;
@@ -852,8 +875,15 @@ body {
 }
 
 @keyframes floatUpDown {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(var(--float-distance)); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(var(--float-distance));
+    }
 }
 
 .sidebar.open {
@@ -901,7 +931,8 @@ body {
 
 #sourceSelect {
     width: 100%;
-    margin-top: 5px; /* Added 15px top margin */
+    margin-top: 5px;
+    /* Added 15px top margin */
     margin-bottom: 15px;
     padding: 5px;
 }
@@ -940,12 +971,16 @@ footer {
     position: absolute;
     width: 100%;
     padding: 10px;
-    background-color: var(--item_bg_color); /* 使用原有的背景颜色变量 */
-    color: var(--footer_text_color); /* 使用原有的文本颜色变量 */
+    background-color: var(--item_bg_color);
+    /* 使用原有的背景颜色变量 */
+    color: var(--footer_text_color);
+    /* 使用原有的文本颜色变量 */
     font-size: 13px;
     bottom: 0;
-    backdrop-filter: blur(var(--card_filter)); /* 保留模糊效果 */
-    -webkit-backdrop-filter: blur(var(--card_filter)); /* 支持 Safari 浏览器 */
+    backdrop-filter: blur(var(--card_filter));
+    /* 保留模糊效果 */
+    -webkit-backdrop-filter: blur(var(--card_filter));
+    /* 支持 Safari 浏览器 */
 }
 
 
@@ -966,7 +1001,7 @@ footer {
 
 .right-column {
     position: relative;
-    width: 130px; 
+    width: 130px;
 }
 
 .current-weather-icon {
@@ -974,7 +1009,8 @@ footer {
     font-size: 36px;
 }
 
-.current-weather-text, .current-weather-temp {
+.current-weather-text,
+.current-weather-temp {
     font-size: 28px;
     font-weight: bold;
 }
@@ -982,7 +1018,7 @@ footer {
 .weather-dropdown {
     position: absolute;
     top: 130%;
-    background: rgba(255, 255, 255, 0.1); 
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     padding: 10px;
     display: none;
@@ -1007,7 +1043,8 @@ footer {
     margin-right: 10px;
 }
 
-.forecast-time, .forecast-temp {
+.forecast-time,
+.forecast-temp {
     font-size: 14px;
     margin-right: 10px;
 }
