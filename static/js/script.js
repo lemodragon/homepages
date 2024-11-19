@@ -86,10 +86,8 @@ function getCookie(name) {
 document.addEventListener('DOMContentLoaded', function () {
     var html = document.querySelector('html');
     var themeState = getCookie("themeState") || "Light";
-    var tanChiShe = document.getElementById("tanChiShe");
 
     function changeTheme(theme) {
-        tanChiShe.src = "/static/svg/snake-" + theme + ".svg";
         html.dataset.theme = theme;
         setCookie("themeState", theme, 365);
         themeState = theme;
@@ -165,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 如果需要在页面完全加载后执行额外的操作，可以保留 load 事件
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     console.log('页面完全加载完毕');
     // 这里可以放置需要在页面完全加载后执行的代码
 });
@@ -206,7 +204,7 @@ fetch('https://v1.hitokoto.cn')
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 获取随机一言
     function getRandomSentence() {
         fetch("https://v1.hitokoto.cn")
@@ -312,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 添加点击事件监听器
     const weatherInfo = document.querySelector('.weather-info');
     if (weatherInfo) {
-        weatherInfo.addEventListener('click', function() {
+        weatherInfo.addEventListener('click', function () {
             const dropdown = document.getElementById('weather-dropdown');
             if (dropdown) {
                 dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
@@ -353,19 +351,19 @@ function initSidebar() {
     newsContainer = document.getElementById('newsContainer');
 
     const routes = [
-        {"name": "HellGithub", "path": "/hellogithub"},
-        {"name": "V2EX", "path": "/v2ex"},
-        {"name": "澎湃", "path": "/thepaper"},
-        {"name": "36氪", "path": "/36kr"},
-        {"name": "头条", "path": "/toutiao"},
-        {"name": "抖音", "path": "/douyin"},
-        {"name": "百度", "path": "/baidu"},
-        {"name": "知乎", "path": "/zhihu"},
-        {"name": "少数派", "path": "/sspai"},
-        {"name": "微信读书", "path": "/weread"},
-        {"name": "哔哩哔哩", "path": "/bilibili"},
-        {"name": "豆瓣电影", "path": "/douban-movie"},
-        {"name": "百度贴吧", "path": "/tieba"},
+        { "name": "HellGithub", "path": "/hellogithub" },
+        { "name": "V2EX", "path": "/v2ex" },
+        { "name": "澎湃", "path": "/thepaper" },
+        { "name": "36氪", "path": "/36kr" },
+        { "name": "头条", "path": "/toutiao" },
+        { "name": "抖音", "path": "/douyin" },
+        { "name": "百度", "path": "/baidu" },
+        { "name": "知乎", "path": "/zhihu" },
+        { "name": "少数派", "path": "/sspai" },
+        { "name": "微信读书", "path": "/weread" },
+        { "name": "哔哩哔哩", "path": "/bilibili" },
+        { "name": "豆瓣电影", "path": "/douban-movie" },
+        { "name": "百度贴吧", "path": "/tieba" },
         // 添加更多新闻源...
     ];
 
@@ -394,13 +392,13 @@ function loadNews() {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(data, "text/xml");
             const items = xmlDoc.getElementsByTagName("item");
-            
+
             newsContainer.innerHTML = '';
-            
+
             for (let item of items) {
                 const title = item.getElementsByTagName("title")[0].textContent;
                 const link = item.getElementsByTagName("link")[0].textContent;
-                
+
                 const newsItem = document.createElement('div');
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
